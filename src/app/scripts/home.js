@@ -6,7 +6,7 @@
 const onSesion = JSON.parse(localStorage.getItem('sesionUser'));
 const pageURL = window.origin;
 let user;
-console.log(window.location);
+console.log(pageURL);
 // Swal.fire({
 //                 icon: 'success',
 //                 title: 'Login successful',
@@ -23,29 +23,9 @@ console.log(window.location);
 
 const validationSession = () => {
     if (!onSesion) {
-        location.href = 'http://127.0.0.1:5501/src/index.html'; 
+        location.href = `${pageURL}/src/index.html`; 
     }else {
         user = onSesion;
     }
 };
 validationSession();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const handleCloseSession = () => {
-//     localStorage.clear();
-//     location.href = `${pageLocation}/index.html`;
-// }
-
-

@@ -3,7 +3,7 @@ import "../styles/style.js";
 import { getData } from "/src/app/scripts/process.js";
 import { getFormElements } from "/src/app/scripts/ui.js";
 
-
+const pageURL = window.origin;
 const formSignIn = new getFormElements("form__login");
 
 const logIn = async (e) => {
@@ -30,7 +30,8 @@ const logIn = async (e) => {
         if (response.length) {
             alert(` ${response[0].name}`); 
             localStorage.setItem("sesionUser", JSON.stringify(response[0]));
-            location.href = 'http://127.0.0.1:5501/src/app/pages/home.html';
+            location.href = `${pageURL}/src/app/pages/home.html`;
+            
         } else {
             Swal.fire("Oops!", "Usuario o contraseña incorrecta!", "error");
         };
@@ -49,7 +50,7 @@ const validationSession = () => {
     const user = localStorage.getItem('sesionUser');
     console.log(user);
     if (user) {
-        location.href = 'http://127.0.0.1:5501/src/app/pages/home.html';
+        location.href = `${pageURL}/src/app/pages/home.html`;
     }
 };
 
