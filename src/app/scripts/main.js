@@ -3,8 +3,11 @@ import "../styles/style.js";
 import { getData } from "/src/app/scripts/process.js";
 import { getFormElements } from "/src/app/scripts/ui.js";
 
-const pageURL = window.origin;
 const formSignIn = new getFormElements("form__login");
+
+// const pageUrl = window.URL;
+console.log(window.location.toString());
+
 
 const logIn = async (e) => {
     e.preventDefault();
@@ -28,10 +31,9 @@ const logIn = async (e) => {
         );
         console.log(response);
         if (response.length) {
-            alert(` ${response[0].name}`); 
+            alert(` ${response[0].name}`);
             localStorage.setItem("sesionUser", JSON.stringify(response[0]));
-            location.href = `${pageURL}/src/app/pages/home.html`;
-            
+            location.href = 'http://127.0.0.1:5501/src/home.html';           
         } else {
             Swal.fire("Oops!", "Usuario o contraseña incorrecta!", "error");
         };
@@ -41,8 +43,8 @@ const logIn = async (e) => {
         Swal.fire("Oops!", "Fallo en el servidor!", "error");
     }
 
-    form.elements[0].value = "";
-    form.elements[1].value = "";
+    formSignIn.getElement.elements[0].value = "";
+    formSignIn.getElement.elements[1].value = "";
 
 };
 
@@ -50,12 +52,13 @@ const validationSession = () => {
     const user = localStorage.getItem('sesionUser');
     console.log(user);
     if (user) {
-        location.href = `${pageURL}/src/app/pages/home.html`;
+        location.href = 'http://127.0.0.1:5501/src/home.html';        
     }
 };
 
 validationSession();
 
-form.addEventListener("submit", (e) => {
+formSignIn.getElement.addEventListener("submit", (e) => { 
+    console.log(e);  
     logIn(e);
 });

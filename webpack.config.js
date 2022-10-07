@@ -2,16 +2,21 @@ const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+
 module.exports = {
   mode: "none",
   entry: {
-    app: ["@babel/polyfill", "./src/app/scripts/main.js"],
+    main: ["@babel/polyfill", "./src/app/scripts/main.js"],
+    home: ["@babel/polyfill", "./src/app/scripts/home.js"],
+    home: ["@babel/polyfill", "./src/app/scripts/signUp.js"],
   },
-  output: {
+  output:{
+    filename: 'js/[name].bundle.js',
     path: path.join(__dirname, 'public', 'scripts'),
-    filename: "js/app.bundle.js",
-  },
-  devServer: { 
+    chunkFilename: '[id].[chunkhash].js'
+},
+
+  devServer: {
     port: 5501,
   },
   module: {
@@ -28,32 +33,42 @@ module.exports = {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
-      {
-        test: /\.html$/i,
-        include: path.join(__dirname, 'src/views'),
-        use: {
-          loader: 'html-loader',
-          options: {
-            esModule: false,
-            sources: {
-              list: [
-                '...',
-                {
-                  tag: 'a',
-                  attribute: 'href',
-                  type: 'src'
-                }
-              ]
-            }
-          }
-        }
-      },
-    ],
+    ]
   },
   plugins: [
     new HTMLWebpackPlugin({
       hash: true,
       template: "./src/index.html",
+      filename: "index.html",
+      chunks: ["main"],
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+      },
+    }),
+    new HTMLWebpackPlugin({
+      hash: true,
+      template: "./src/home.html",
+      filename: "home.html",
+      chunks: ["home"],
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+      },
+    }),
+    new HTMLWebpackPlugin({
+      hash: true,
+      template: "./src/signUp.html",
+      filename: "signUp.html",
+      chunks: ["signUp"],
       minify: {
         collapseWhitespace: true,
         removeComments: true,
