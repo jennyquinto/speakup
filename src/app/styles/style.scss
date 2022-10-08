@@ -1,3 +1,215 @@
+//importar las font-sizes
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap');
+
+// variables
+// $font-headings: 'DM Serif Display';
+$font-body: 'Epilogue';
+$body-height: 100vh;
+$body-width: 100wh;
+// $background-color-nav: hsl(0, 0%, 98%);
+// $font-size-body: 16px;
+// $color-links: hsl(273, 4%, 51%);
+// $color-btns: hsl(270, 9%, 17%);
+// $back-banner: hsl(256, 26%, 20%);
+// $color-header: white;
+
+
+
+//importar partials o modules
+@import 'universals';
+
+//general style to body
 body {
-  background-color: blue($color: #000000);
+  height: 100vh;
+  width: 100vw;
+  font-family: $font-body;
 }
+
+//index(sign In) styles
+
+.signin__main{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: palevioletred;
+  // padding: 50px 0;
+  font-family: sans-serif;
+  &__section{
+    font-family: $font-body;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    border: 1px solid #F0F0F0;    
+    border-radius: 10px;
+    box-shadow: 0px 13px 22px 5px rgba(0,0,0,0.1);
+  }
+}
+
+//Functions
+@function sizePages($t) {
+    @return $t*$font-size-body;
+}
+
+// //importar partials o modules
+// @import 'universals';
+
+// //mixins: mezclas de propiedades reusables
+// @mixin paddings ($t) {
+//     padding: $t*1px $t*4px;
+// }
+
+// @mixin botones($s, $color-letters, $color-backg) {
+//     @include paddings($s);
+//     color: $color-letters;
+//     @extend body;
+//     font-weight: 700;
+//     background-color: $color-backg;
+//     border: 3px solid $color-letters;
+//     cursor: pointer;
+
+//     &:hover {
+//         background-color: $color-letters;
+//         color: $color-backg;
+//     }
+
+// }
+
+// //Asignación de propiedades al body
+// body {
+//     font-family: $font-body;
+//     font-size: $font-size-body;
+// }
+
+// //reglas anidadas
+// .header {
+//     color: $color-header;
+
+//     &__nav {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//         @include paddings(20);
+//         background-color: $background-color-nav;
+//     }
+
+//     &__list {
+//         list-style: none;
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//         gap: size(1);
+//     }
+
+//     &__item {
+//         a {
+//             text-decoration: none;
+//             color: $color-links;
+//             font-weight: 700;
+
+//             &:hover {
+//                 color: $color-btns;
+//             }
+//         }
+
+//         button {
+//             @include botones(5, $color-btns, $background-color-nav);
+//         }
+
+//         &--mobile {
+//             display: none;
+//         }
+//     }
+
+//     &__banner {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//         gap: size(3);
+//         background-color: $back-banner;
+//         @include paddings(20);
+//         position: relative;
+//     }
+//     &__patron-left{
+//         position: absolute;
+//         object-fit: contain;
+//         left: 0;
+//         top: 70%;
+//     }
+//     &__patron-right{
+//         position: absolute;
+//         object-fit: contain;
+//         top: 0;
+//         right: 0;
+//     }
+
+//     &__text {
+//         width: 40%;
+
+//         hr {
+//             width: 25%;
+//             margin-bottom: 30px;
+//         }
+
+//         h1 {
+//             font-family: $font-headings;
+//             font-size: size(3);
+//         }
+
+//         p {
+//             margin: 20px 0;
+//             line-height: 25px;
+//         }
+
+//         button {
+//             @include botones(5, $background-color-nav, $back-banner);
+//         }
+//     }
+
+//     &__img-banner {
+//         width: 45%;
+
+//         img {
+//             width: 100%;
+//             object-fit: cover;
+//             transform: translateY(150px);
+//         }
+//     }
+// }
+
+
+// //Emplear media queries para diseño responsive
+// @media screen and (max-width: 800px) {
+//     .header {
+//         &__item {
+//             display: none;
+
+//             &--mobile {
+//                 display: block;
+//             }
+//         }
+
+//         &__banner {
+//             flex-direction: column-reverse;
+//             padding: 0;
+//         }
+
+//         &__img-banner {
+//             width: 100%;
+
+//             img {
+//                 transform: none;
+//             }
+//         }
+
+//         &__text {
+//             width: 90%;
+//             text-align: center;
+//             margin: 40px 0;
+//             hr{
+//                 display: none;
+//             }
+
+//         }
+//     }
+// }

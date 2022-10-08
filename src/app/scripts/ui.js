@@ -7,7 +7,5 @@ export class getFormElements {
   }
   get getElement (){
     return this.item;
-  }
-
-  
+  }  
 };

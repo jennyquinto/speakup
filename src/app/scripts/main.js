@@ -5,10 +5,6 @@ import { getFormElements } from "/src/app/scripts/ui.js";
 
 const formSignIn = new getFormElements("form__login");
 
-// const pageUrl = window.URL;
-console.log(window.location.toString());
-
-
 const logIn = async (e) => {
     e.preventDefault();
     const objUser = {
@@ -31,9 +27,26 @@ const logIn = async (e) => {
         );
         console.log(response);
         if (response.length) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Login successful',
+                text: `Bienvenid@ ${response[0].name}`,
+                showConfirmButton: true,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+
+            });
             alert(` ${response[0].name}`);
+            
+            setTimeout(() => { location.href= 'http://127.0.0.1:5501/src/home.html' }, 2000000);
             localStorage.setItem("sesionUser", JSON.stringify(response[0]));
-            location.href = 'http://127.0.0.1:5501/src/home.html';           
+            location.href = 'http://127.0.0.1:5501/src/home.html';
+
+
         } else {
             Swal.fire("Oops!", "Usuario o contraseña incorrecta!", "error");
         };
@@ -52,13 +65,14 @@ const validationSession = () => {
     const user = localStorage.getItem('sesionUser');
     console.log(user);
     if (user) {
-        location.href = 'http://127.0.0.1:5501/src/home.html';        
+        location.href = 'http://127.0.0.1:5501/src/home.html';
     }
 };
 
 validationSession();
 
-formSignIn.getElement.addEventListener("submit", (e) => { 
-    console.log(e);  
+formSignIn.getElement.addEventListener("submit", (e) => {
+    console.log(e);
+    localStorage.clear();
     logIn(e);
 });

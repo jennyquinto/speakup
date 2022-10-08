@@ -8,7 +8,6 @@ module.exports = {
   entry: {
     main: ["@babel/polyfill", "./src/app/scripts/main.js"],
     home: ["@babel/polyfill", "./src/app/scripts/home.js"],
-    home: ["@babel/polyfill", "./src/app/scripts/signUp.js"],
   },
   output:{
     filename: 'js/[name].bundle.js',
@@ -55,20 +54,6 @@ module.exports = {
       template: "./src/home.html",
       filename: "home.html",
       chunks: ["home"],
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true,
-      },
-    }),
-    new HTMLWebpackPlugin({
-      hash: true,
-      template: "./src/signUp.html",
-      filename: "signUp.html",
-      chunks: ["signUp"],
       minify: {
         collapseWhitespace: true,
         removeComments: true,
