@@ -1,54 +1,49 @@
 //importar las font-sizes
-@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 // variables
 // $font-headings: 'DM Serif Display';
-$font-body: 'Epilogue';
+
 $body-height: 100vh;
-$body-width: 100wh;
-// $background-color-nav: hsl(0, 0%, 98%);
-// $font-size-body: 16px;
-// $color-links: hsl(273, 4%, 51%);
-// $color-btns: hsl(270, 9%, 17%);
-// $back-banner: hsl(256, 26%, 20%);
-// $color-header: white;
-
-
+$body-width: 100vw;
+$black: #000000;
+$grey: #666667;
+$grey-2: #f2f2f2;
+$grey-3: #f6f6f6;
+$grey-4: #ededed;
+$white: #ffffff;
+$green-1: #e1f7cb;
+$green-2: #56bca6;
+$red: #ff4a4a;
+$green-3: #429488;
+$blue: #5cb3f0;
+$body-16regular: 400 1rem/1.25rem Inter;
+$body-16bold: 700 1rem/1.25rem Inter;
+$body-14regular: 400 0.875rem/1.125rem Inter;
+$body-14regular_u: 500 0.875rem/1.25rem Inter;
+$caption-12bold: 700 0.75rem/1rem Inter;
+$caption-12regular: 400 0.75rem/1rem Inter;
+$caption-12regular_u: 400 0.75rem/1.25rem Inter;
 
 //importar partials o modules
 @import 'universals';
+@import 'signin';
+@import 'home';
 
 //general style to body
 body {
-  height: 100vh;
-  width: 100vw;
-  font-family: $font-body;
+  height: $body-height;
+  width: $body-width;
 }
+
+
 
 //index(sign In) styles
 
-.signin__main{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  background-color: palevioletred;
-  // padding: 50px 0;
-  font-family: sans-serif;
-  &__section{
-    font-family: $font-body;
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    border: 1px solid #F0F0F0;    
-    border-radius: 10px;
-    box-shadow: 0px 13px 22px 5px rgba(0,0,0,0.1);
-  }
-}
 
 //Functions
 @function sizePages($t) {
-    @return $t*$font-size-body;
+  @return $t*$font-size-body;
 }
 
 // //importar partials o modules

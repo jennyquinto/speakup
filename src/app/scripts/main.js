@@ -3,6 +3,9 @@ import "../styles/style.js";
 import { getData } from "/src/app/scripts/process.js";
 import { getFormElements } from "/src/app/scripts/ui.js";
 
+const pageUrl =window.origin;
+const pagehome=`${pageUrl}/home.html`
+
 const formSignIn = new getFormElements("form__login");
 
 const logIn = async (e) => {
@@ -42,9 +45,9 @@ const logIn = async (e) => {
             });
             alert(` ${response[0].name}`);
             
-            setTimeout(() => { location.href= 'http://127.0.0.1:5501/src/home.html' }, 2000000);
+            setTimeout(() => { location.href= `${pagehome}` }, 3000);
             localStorage.setItem("sesionUser", JSON.stringify(response[0]));
-            location.href = 'http://127.0.0.1:5501/src/home.html';
+            location.href = `${pagehome}`;
 
 
         } else {
@@ -65,7 +68,7 @@ const validationSession = () => {
     const user = localStorage.getItem('sesionUser');
     console.log(user);
     if (user) {
-        location.href = 'http://127.0.0.1:5501/src/home.html';
+        location.href = `${pagehome}`;
     }
 };
 

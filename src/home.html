@@ -1,18 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.0.4/luxon.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
     <title>User Home</title>
 </head>
+
 <body>
     <main class="container">
         <div class="container__left">
+            <figure class="left__headder">
+                <img src="https://github.com/jennyquinto/Img/blob/main/Ellipse1.png" alt="User image">
+            </figure>
+            <div class="left__chats">
+                <section class="left__chats__search">
+                    <form action="search" role="search" aria-label="Buscar o iniciar un nuevo chat">
+                        <img src="https://github.com/jennyquinto/Img/blob/main/search.svg" alt="Magnifying glass icon">
+                        <input type="search" name="search" placeholder="Buscar o iniciar un nuevo chat">
+                    </form>
+                </section>
+                <section class="left__chats__conversation">
+                    <div class="conversation__card">
+                        <figure class="card__user-chat">
+                            <img src="https://github.com/jennyquinto/Img/blob/main/Ellipse2.png" alt="User image">
+                        </figure>
+                        <div class="card__info">
+                            <div class="card__info__top">
+                                <span class="userName">Ingrid</span>
+                                <span class="date">Viernes</span>
+                            </div>
+                            <div class="card__info__bottom">
+                                <figure>
+                                    <img src="https://raw.githubusercontent.com/jennyquinto/Img/main/State%3DCheck-1.png" alt="double check icon" width="16px"
+                                        height="9.89">
+                                </figure>
+                                <div class="info__message">
+                                    <span>Amet minim mollit non deserunt ullamco est sit aliqua non deserunt
+                                        ullamco</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+            </div>
 
         </div>
         <div class="container__right">
@@ -21,4 +62,5 @@
     </main>
 
 </body>
+
 </html>
