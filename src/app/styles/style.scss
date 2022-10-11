@@ -34,177 +34,24 @@ $caption-12regular_u: 400 0.75rem/1.25rem Inter;
 body {
   height: $body-height;
   width: $body-width;
+  font-family: 'Inter', sans-serif;
 }
 
-
-
-//index(sign In) styles
-
-
-//Functions
-@function sizePages($t) {
-  @return $t*$font-size-body;
-}
-
-// //importar partials o modules
-// @import 'universals';
-
-// //mixins: mezclas de propiedades reusables
-// @mixin paddings ($t) {
-//     padding: $t*1px $t*4px;
+// ::-webkit-scrollbar {
+//   inline-size: .5rem;
+//   block-size: .5rem;
 // }
 
-// @mixin botones($s, $color-letters, $color-backg) {
-//     @include paddings($s);
-//     color: $color-letters;
-//     @extend body;
-//     font-weight: 700;
-//     background-color: $color-backg;
-//     border: 3px solid $color-letters;
-//     cursor: pointer;
-
-//     &:hover {
-//         background-color: $color-letters;
-//         color: $color-backg;
-//     }
-
+// ::-webkit-scrollbar-thumb {
+//   background: $grey-3;
+//   border-radius: .5rem;
 // }
 
-// //Asignación de propiedades al body
-// body {
-//     font-family: $font-body;
-//     font-size: $font-size-body;
-// }
-
-// //reglas anidadas
-// .header {
-//     color: $color-header;
-
-//     &__nav {
-//         display: flex;
-//         justify-content: space-between;
-//         align-items: center;
-//         @include paddings(20);
-//         background-color: $background-color-nav;
-//     }
-
-//     &__list {
-//         list-style: none;
-//         display: flex;
-//         justify-content: space-between;
-//         align-items: center;
-//         gap: size(1);
-//     }
-
-//     &__item {
-//         a {
-//             text-decoration: none;
-//             color: $color-links;
-//             font-weight: 700;
-
-//             &:hover {
-//                 color: $color-btns;
-//             }
-//         }
-
-//         button {
-//             @include botones(5, $color-btns, $background-color-nav);
-//         }
-
-//         &--mobile {
-//             display: none;
-//         }
-//     }
-
-//     &__banner {
-//         display: flex;
-//         justify-content: space-between;
-//         align-items: center;
-//         gap: size(3);
-//         background-color: $back-banner;
-//         @include paddings(20);
-//         position: relative;
-//     }
-//     &__patron-left{
-//         position: absolute;
-//         object-fit: contain;
-//         left: 0;
-//         top: 70%;
-//     }
-//     &__patron-right{
-//         position: absolute;
-//         object-fit: contain;
-//         top: 0;
-//         right: 0;
-//     }
-
-//     &__text {
-//         width: 40%;
-
-//         hr {
-//             width: 25%;
-//             margin-bottom: 30px;
-//         }
-
-//         h1 {
-//             font-family: $font-headings;
-//             font-size: size(3);
-//         }
-
-//         p {
-//             margin: 20px 0;
-//             line-height: 25px;
-//         }
-
-//         button {
-//             @include botones(5, $background-color-nav, $back-banner);
-//         }
-//     }
-
-//     &__img-banner {
-//         width: 45%;
-
-//         img {
-//             width: 100%;
-//             object-fit: cover;
-//             transform: translateY(150px);
-//         }
-//     }
+// ::-webkit-scrollbar-track {
+//   background: $grey;
 // }
 
 
-// //Emplear media queries para diseño responsive
-// @media screen and (max-width: 800px) {
-//     .header {
-//         &__item {
-//             display: none;
-
-//             &--mobile {
-//                 display: block;
-//             }
-//         }
-
-//         &__banner {
-//             flex-direction: column-reverse;
-//             padding: 0;
-//         }
-
-//         &__img-banner {
-//             width: 100%;
-
-//             img {
-//                 transform: none;
-//             }
-//         }
-
-//         &__text {
-//             width: 90%;
-//             text-align: center;
-//             margin: 40px 0;
-//             hr{
-//                 display: none;
-//             }
-
-//         }
-//     }
+// ::-webkit-scrollbar-thumb:vertical {
+//   background: $grey-4;
 // }

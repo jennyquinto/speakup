@@ -2,29 +2,223 @@
     $userListSize: 27.5rem;
     display: grid;
     grid-template-columns: $userListSize 1fr;
-    grid-template-areas: "user-list chat" "user-list footer";
+    grid-template-areas: "container__left container__right" "container__left footer";
     block-size: $body-height;
     box-sizing: border-box;
-    background-color: azure;
 
     &__left {
-        grid-area: user-list;
-        background: $green-3;
+        grid-area: container__left;
+        background: $grey-3;
 
-        &__header {
+        .left__headder {
             padding-block: 1rem;
             padding-inline: 1rem;
             display: flex;
             flex-direction: row;
             align-items: center;
             background: $grey-4;
+
+        }
+
+        .left__chats {
+            display: flex;
+            flex-direction: column;
+            padding-inline: 1rem;
+            block-size: calc($body-height - 5rem);
+            overflow-y: scroll;
+            height: 80vh;
+
+            &__search {
+                background: $grey-3;
+                padding-block: 1rem;
+                position: sticky;
+                top: 0;
+
+                input {
+                    border: none;
+                    border-radius: 3.125rem;
+                    padding-block: .75rem;
+                    padding-inline-start: 5rem;
+                    color: $grey;
+                    width: 76%;
+
+                }
+
+                img {
+                    position: absolute;
+                    left: 2.5rem;
+                    top: calc(50% - .75rem);
+                    block-size: 1.5rem;
+
+                }
+            }
+
+            &__conversation {
+                padding-block: 1rem;
+                border-bottom: 1px solid $grey-2;
+
+                .conversation__card {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+
+                    .card__user-chat {
+                        border-radius: 50%;
+                        inline-size: 3rem;
+                        block-size: 3rem;
+                    }
+
+                    .card__info {
+                        max-inline-size: 20.7rem;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+
+                        &__top {
+                            display: flex;
+                            justify-content: space-between;
+
+                            .userName {
+                                font: body-16regular;
+
+                            }
+
+                            .date {
+                                font: $caption-12regular;
+                                color: $grey;
+                            }
+                        }
+
+                        &__bottom {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap: 0.25rem;
+
+                            .info__message {
+                                overflow: hidden;
+
+                                span {
+                                    font: $caption-12regular;
+                                    color: $grey;
+                                    display: block;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
         }
     }
 
     &__right {
+        grid-area: container__right;
         display: flex;
         flex-direction: column;
         block-size: 100vh;
+
+        .header {
+            max-block-size: 5rem;
+            display: flex;
+            justify-content: space-between;
+            padding-inline: 1rem;
+            padding-block: 1rem;
+            background: $grey-4;
+            border-left: 1px solid $grey;
+
+            &__left {
+                display: flex;
+
+                .user {
+                    background: $grey-4;
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+
+                    img {
+                        border-radius: 50%;
+                    }
+
+                    p {
+                        margin: 0;
+
+                        span {
+                            display: block;
+                        }
+
+                        .user-name {
+                            color: $black;
+                            font: $body-16regular;
+                        }
+
+                        .user-status {
+                            color: $grey;
+                            font: $caption-12regular;
+                        }
+                    }
+                }
+            }
+
+            &__right {
+                display: flex;
+
+                .btn {
+                    background: none;
+                    border: none;
+                }
+            }
+
+        }
+
+        .footer {
+            block-size: 80px;
+            background: $grey-4;
+            padding-inline: 1rem;
+            display: grid;
+            grid-template-areas: "emoji paperclip input mic";
+            grid-template-columns: 1.5rem 1.5rem 1fr 1.5rem;
+            grid-template-rows: 1fr;
+            align-items: center;
+            gap: 1rem;
+            
+
+           .footer .emoji {
+                grid-area: emoji;
+            }
+
+            .paperclipclip {
+                grid-area: paperclip;
+            }
+
+            .input {
+                grid-area: input;               
+            }
+
+            .mic {
+                grid-area: mic;
+            }
+
+            form {
+                display: flex;
+                flex: 1;
+            }
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            block-size: auto;
+            inline-size: auto;
+        }
+
+        .btn:active {
+            transform: scale(.95);
+        }
     }
 }
-

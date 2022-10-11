@@ -32,19 +32,13 @@ module.exports = {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
-      // {
-      //   test: /\.(png|svg|jpg|jpeg|gif)$/i,
-      //   use: [
-      //     { 
-      //       loader: 'file-loader',
-      //       options: {
-      //         name: '[name].[ext]',
-      //         outputPath: 'assets/',
-      //         publicPath: 'assets/'
-      //       }
-      //     }
-      //   ]
-      // },
+      {
+        test: /\.(png|svg|jpg|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: 'assets/[name].[ext]',
+        }
+      },
       // {
       //   test: /\.html$/i,
       //   use: ['html-loader']
