@@ -53,6 +53,7 @@ const userChats = async () => {
     let sentConversations = await getData(sentConvertationURL);
     sentConversations.forEach(async (element) => {
         let [User] = await getData(`${userURL}${element.idUser2}`);
+        User.conversation = element.conversation;
         userList.push(User);
     });
 
@@ -60,6 +61,7 @@ const userChats = async () => {
     let receivedConversations = await getData(receivedConvertationURL);
     receivedConversations.forEach(async (element) => {
         let [User2] = await getData(`${userURL}${element.idUser1}`);
+        User2.conversation = element.conversation;
         userList.push(User2);
     });
 
