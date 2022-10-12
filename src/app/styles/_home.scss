@@ -56,6 +56,10 @@
             &__conversation {
                 padding-block: 1rem;
                 border-bottom: 1px solid $grey-2;
+                &:hover{
+                    background-color: $grey-4;
+                    transform: scale(.99);
+                }
 
                 .conversation__card {
                     display: flex;
@@ -175,6 +179,96 @@
 
         }
 
+        .message-list {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-image: url(https://raw.githubusercontent.com/jennyquinto/Img/main/whatsapp-background.jpg);
+            background-repeat: repeat;
+            object-fit: cover;
+            block-size: calc(100vh - 5rem);
+            overflow: auto;
+            flex-grow: 1;
+
+            .message {
+                background: white;
+                font: $body-16regular;
+                padding: .5rem;
+                display: flex;
+                flex-direction: column;
+                gap: .25rem;
+                position: relative;
+            }
+
+            .message-text {
+                margin: 0;
+            }
+
+            .message.is-receiver {
+                background-color: white;
+                align-self: flex-start;
+                border-radius: 0 .5rem .5rem .5rem;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset-block-start: 0;
+                    inset-inline-end: 100%;
+                    background-image: url(https://raw.githubusercontent.com/jennyquinto/Img/6779d181dd0cee2c1340e76e95e3ca3e032791e1/Rectangle4w.svg);
+                    inline-size: 10px;
+                    block-size: 12px;
+                }
+            }
+
+            .message.is-sender {
+                background-color: $green-1;
+                align-self: flex-end;
+                border-radius: .5rem 0 .5rem .5rem;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset-block-start: 0;
+                    inset-inline-start: 100%;
+                    background-image: url(https://raw.githubusercontent.com/jennyquinto/Img/6779d181dd0cee2c1340e76e95e3ca3e032791e1/Rectangle4.svg);
+                    inline-size: 10px;
+                    block-size: 12px;
+                }
+            }
+
+            .message-date {
+                font: $caption-12regular;
+                color: $grey;
+            }
+
+            .message-status {
+                inline-size: 1rem;
+                block-size: 1rem;
+            }
+
+            .message-status.is-dobleCheck {
+                background-image: url(https://raw.githubusercontent.com/jennyquinto/Img/6779d181dd0cee2c1340e76e95e3ca3e032791e1/Whatsaap-check.svg);
+                background-repeat: no-repeat;
+            }
+
+            .message-details {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: .25rem;
+            }
+
+            .date {
+                background: #E5F2FA;
+                border-radius: .5rem;
+                padding: .625rem;
+                font: $body-16regular;
+                align-self: center;
+            }
+        }
+
         .footer {
             block-size: 80px;
             background: $grey-4;
@@ -185,25 +279,35 @@
             grid-template-rows: 1fr;
             align-items: center;
             gap: 1rem;
-            
 
-           .footer .emoji {
-                grid-area: emoji;
+            & input {
+                font: $body-16regular;
+                border: none;
+                border-radius: 3.125rem;
+                padding-inline: 1.5rem;
+                padding-block: .75rem;
+                color: $grey;
+                flex: 1;
             }
 
-            .paperclipclip {
+            & .emoji {
+                grid-area: emoji;
+                // border: 1px dashed darksalmon;
+            }
+
+            & .paperclipclip {
                 grid-area: paperclip;
             }
 
-            .input {
-                grid-area: input;               
+            & .input {
+                grid-area: input;
             }
 
-            .mic {
+            & .mic {
                 grid-area: mic;
             }
 
-            form {
+            & form {
                 display: flex;
                 flex: 1;
             }

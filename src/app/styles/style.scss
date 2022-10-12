@@ -1,9 +1,6 @@
 //importar las font-sizes
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-// variables
-// $font-headings: 'DM Serif Display';
-
 $body-height: 100vh;
 $body-width: 100vw;
 $black: #000000;
@@ -37,21 +34,3 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-// ::-webkit-scrollbar {
-//   inline-size: .5rem;
-//   block-size: .5rem;
-// }
-
-// ::-webkit-scrollbar-thumb {
-//   background: $grey-3;
-//   border-radius: .5rem;
-// }
-
-// ::-webkit-scrollbar-track {
-//   background: $grey;
-// }
-
-
-// ::-webkit-scrollbar-thumb:vertical {
-//   background: $grey-4;
-// }
