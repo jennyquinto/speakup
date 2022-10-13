@@ -16,12 +16,16 @@ import { getData } from "/src/app/scripts/process.js";
 import { getFormElements } from "/src/app/scripts/ui.js";
 
 let chatSections = new getFormElements("chatSection");
+
 let chat = new getFormElements("userChat");
 let userChat = chat.getElement;
+
 let contactInf = new getFormElements("user");
 let contact = contactInf.getElement;
+
 let messagesSection = new getFormElements("messagesSection");
 let messages = messagesSection.getElement;
+
 
 function importAll(r) {
     let images = {};
@@ -48,12 +52,14 @@ const validationSession = () => {
         user = onSesion;
     }
 };
-validationSession();
+// validationSession();
 
 document.addEventListener('DOMContentLoaded', (event) => {
     event.preventDefault()
     userChats();
-
+    userChat.firstChild.classList.add('start');
+    
+    
 });
 
 const userChats = async () => {
@@ -122,8 +128,8 @@ const userChats = async () => {
         dia = Number(dayReference)
 
         let fecha = Date.local(2022, mes, dia)
-        let fecha2 ;
-        
+        let fecha2;
+
         if (fecha.ts - ultimaConver > 0) {
             ultimaConver = fecha.ts;
             fecha2 = lastConversation.date;
@@ -163,13 +169,14 @@ const userChats = async () => {
         </section>
     `;
     });
+    userChat.firstElementChild.classList.add('start')
 
     const lastUser = chatList[count];
     console.log(lastUser);
 
     let connect = '';
     if (lastUser.connection) {
-       connect = 'En línea';
+        connect = 'En línea';
     }
     contact.innerHTML = '';
     contact.innerHTML += `
@@ -181,13 +188,12 @@ const userChats = async () => {
     </p>
     `;
 
+    let idMy = 0;
     idMy = idUserOnSesion;
-    let idMy= 0;
-    let viewedIcon = 0;
+    let viewedIcon = '';
     let classMessages = '';
-    
+
     messages.innerHTML = '';
-    // console.log(messages.sendBy);
     lastUser.conversation.forEach(message => {
         let classMessages = '';
         if (idMy !== message.sendBy) {
@@ -195,15 +201,13 @@ const userChats = async () => {
 
         } else {
             classMessages = 'is-sender';
-            console.log(classMessages);
-
         }
 
         if (message.viewed) {
-            viewedIcon  = viewed;
+            viewedIcon = viewed;
         }
         else {
-            viewedIcon  = unViewed;
+            viewedIcon = unViewed;
         }
 
         messages.innerHTML += `
@@ -218,10 +222,10 @@ const userChats = async () => {
                 </div>
             </div>
 
-        `;       
+        `;
 
     });
-   
+
 
 
 }

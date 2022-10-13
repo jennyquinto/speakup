@@ -21,9 +21,9 @@
         }
 
         .left__chats {
+            width: 100%;
             display: flex;
             flex-direction: column;
-            padding-inline: 1rem;
             block-size: calc($body-height - 5rem);
             overflow-y: scroll;
             height: 80vh;
@@ -56,6 +56,7 @@
             &__conversation {
                 padding-block: 1rem;
                 border-bottom: 1px solid $grey-2;
+                
                 &:hover{
                     background-color: $grey-4;
                     transform: scale(.99);
@@ -64,12 +65,14 @@
                 .conversation__card {
                     display: flex;
                     align-items: center;
-                    gap: .5rem;
+                    gap: .9rem;
+                    
 
                     .imgUser{
-                        height: 50px;
+                        height: 60px;
                         width: 100%;
                         object-fit: contain;
+                        margin-left: 0.75rem;
                     }
 
                     .card__user-chat {
@@ -333,4 +336,8 @@
             transform: scale(.95);
         }
     }
+}
+
+.start{
+    background-color: $grey-4;
 }
