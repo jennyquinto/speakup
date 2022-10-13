@@ -1,10 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap');
+@import 'signin';
 
-$font-sign: 'Epilogue';
-$body-16regular: 400 1rem/1.25rem Epilogue;
-$body-16bold: 700 1rem/1.25rem Epilogue;
-
-.signin__main {
+.signUp__main {
     width: 100%;
     height: 100%;
     display: flex;
@@ -14,43 +10,42 @@ $body-16bold: 700 1rem/1.25rem Epilogue;
     font: $body-16regular;
 
     &__section {
-        height: 80%;
+        height: 90%;
         width: 33%;
         font-family: $font-sign;
         border: 1px solid #F0F0F0;
         border-radius: 10px;
         box-shadow: 0px 13px 22px 5px rgba(0, 0, 0, 0.1);
         padding: 20px 30px;
+        text-align: center;
+
+        h1 {
+            font-size: $body-16bold;
+            color: $green-2;
+        }
+
+        h1,
+        h2 {
+            line-height: 60px;
+        }
 
         .form {
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: 80%;
             text-align: center;
             justify-content: space-between;
             font: $body-16regular;
+            margin-bottom: 8%;
 
-            p {
-                display: flex;
-                align-self: center;
-                font-size: $body-16regular;
-                line-height: 30px;
-                width: fit-content;
-                text-align: center;
-                text-decoration-line: underline;
-                text-underline-offset: 3px;
-                color: blue;
-                cursor: pointer;
-                &:hover{
-                    color: #551A8B;
-                }
-
-            }
-
-            h1 {
-                font-size: $body-16bold;
-                ;
-                color: $green-2;
+            textarea {
+                height: 20px;
+                border-radius: 10px;
+                border: 2px solid #F0F0F0;
+                font-size: 0.9rem;
+                padding: 20px;
+                font-family: inherit;
+                text-align: justify;
             }
 
             input {
@@ -77,6 +72,7 @@ $body-16bold: 700 1rem/1.25rem Epilogue;
                 color: white;
                 cursor: pointer;
                 font-size: 16px;
+                justify-content: flex-end;
 
                 &:active {
                     transform: scale(.80);
@@ -85,4 +81,3 @@ $body-16bold: 700 1rem/1.25rem Epilogue;
         }
     }
 }
-

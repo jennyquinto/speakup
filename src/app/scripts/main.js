@@ -5,8 +5,22 @@ import { getFormElements } from "/src/app/scripts/ui.js";
 
 const pageUrl =window.origin;
 const pagehome=`${pageUrl}/home.html`
+const pageSignUp=`${pageUrl}/signUp.html`
+
+
+const signUpPage = new getFormElements("signUpRedirect");
+let signUpClick = signUpPage.getElement ;
+
 
 const formSignIn = new getFormElements("form__login");
+
+
+signUpClick.addEventListener('click', ({target}) =>{  
+    if (target.classList.contains('signUp')){
+       location.href = `${pageSignUp}`;
+    }
+});
+
 
 const logIn = async (e) => {
     e.preventDefault();
