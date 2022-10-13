@@ -43,7 +43,7 @@ let User2 = {}
 let count = -1;
 let ultimaConver = 0;
 
-const onSesion = JSON.parse(localStorage.getItem('sesionUser'));
+let onSesion = JSON.parse(localStorage.getItem('sesionUser'));
 
 const validationSession = () => {
     if (!onSesion) {
@@ -52,7 +52,7 @@ const validationSession = () => {
         user = onSesion;
     }
 };
-// validationSession();
+validationSession();
 
 document.addEventListener('DOMContentLoaded', (event) => {
     event.preventDefault()

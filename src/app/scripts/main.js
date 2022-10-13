@@ -82,7 +82,7 @@ const validationSession = () => {
     const user = localStorage.getItem('sesionUser');
     console.log(user);
     if (user) {
-        // location.href = `${pagehome}`;
+        location.href = `${pagehome}`;
     }
 };
 
