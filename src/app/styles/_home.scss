@@ -190,7 +190,7 @@
         .message-list {
             flex-grow: 1;
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             gap: 1rem;
             padding: 1.5rem;
             background-image: url(https://raw.githubusercontent.com/jennyquinto/Img/main/whatsapp-background.jpg);
@@ -256,10 +256,10 @@
                 block-size: 1rem;
             }
 
-            .message-status.is-dobleCheck {
-                background-image: url(https://raw.githubusercontent.com/jennyquinto/Img/6779d181dd0cee2c1340e76e95e3ca3e032791e1/Whatsaap-check.svg);
-                background-repeat: no-repeat;
-            }
+            // .message-status.is-dobleCheck {
+            //     background-image: url(https://raw.githubusercontent.com/jennyquinto/Img/6779d181dd0cee2c1340e76e95e3ca3e032791e1/Whatsaap-check.svg);
+            //     background-repeat: no-repeat;
+            // }
 
             .message-details {
                 display: flex;

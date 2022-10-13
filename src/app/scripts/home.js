@@ -2,6 +2,10 @@
 // let { date, horaMinutos, day } = dateHour();
 
 // console.log(day,date,horaMinutos);
+
+let Date = luxon.DateTime;
+
+
 import "../styles/style.js";
 
 import viewed from "../../assets/doublecheckblue.svg";
@@ -14,6 +18,10 @@ import { getFormElements } from "/src/app/scripts/ui.js";
 let chatSections = new getFormElements("chatSection");
 let chat = new getFormElements("userChat");
 let userChat = chat.getElement;
+let contactInf = new getFormElements("user");
+let contact = contactInf.getElement;
+let messagesSection = new getFormElements("messagesSection");
+let messages = messagesSection.getElement;
 
 function importAll(r) {
     let images = {};
@@ -28,6 +36,8 @@ let idUserOnSesion;
 let userList = [];
 let chatList = [];
 let User2 = {}
+let count = -1;
+let ultimaConver = 0;
 
 const onSesion = JSON.parse(localStorage.getItem('sesionUser'));
 
@@ -47,8 +57,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 const userChats = async () => {
-    
-
     idUserOnSesion = user.id;
     const userURL = 'users?id=';
     let [infoUser] = await getData(`${userURL}${idUserOnSesion}`);
@@ -79,41 +87,58 @@ const userChats = async () => {
     responseUserList.forEach((element, index) => {
         element = element[0];
         chatList.push(element);
+
     });
 
+
     userChat.innerHTML = '';
+
 
     chatList.forEach((user, index) => {
         let property = sentConversations.find(element => element.idUser2 == user.id);
         if (property) {
-            console.log(property.conversation);
             user.conversation = property.conversation
         };
         let property1 = receivedConversations.find(element => element.idUser1 == user.id);
         if (property1) {
             user.conversation = property1.conversation
         };
-        
+
         let lastConversation = user.conversation[user.conversation.length - 1];
         let lastDateMessages = lastConversation.date;
-        let lastDate = lastDateMessages.substr(0, 2)
-        console.log(lastDate);
+        let dia;
+        let mes;
+        let monthReference = lastDateMessages.substr(3, 2);
+        let dayReference = lastDateMessages.substr(0, 2);
+        if (monthReference.startsWith("0", 0)) {
+            monthReference = lastDateMessages.substr(4, 1);
 
-        let status = user.conversation[user.conversation.length - 1].viewed;
+        }
+        if (dayReference.startsWith("0", 0)) {
+            dayReference = lastDateMessages.substr(1, 1);
+        }
+
+        mes = Number(monthReference)
+        dia = Number(dayReference)
+
+        let fecha = Date.local(2022, mes, dia)
+        let fecha2 ;
         
-        let checkIcon ='';
-        if(status){            
+        if (fecha.ts - ultimaConver > 0) {
+            ultimaConver = fecha.ts;
+            fecha2 = lastConversation.date;
+            count += 1;
+        }
+        let status = user.conversation[user.conversation.length - 1].viewed;
+
+        let checkIcon = '';
+        if (status) {
             checkIcon = viewed;
         }
-        else{
+        else {
             checkIcon = unViewed;
         }
-        
-        console.log(status);
-        // user.conversation.forEach(date => {
-        // }); 
-        
-        // console.log(date);
+
         userChat.innerHTML += `
             <section class="left__chats__conversation">
                 <div class="conversation__card">
@@ -139,6 +164,65 @@ const userChats = async () => {
     `;
     });
 
+    const lastUser = chatList[count];
+    console.log(lastUser);
+
+    let connect = '';
+    if (lastUser.connection) {
+       connect = 'En línea';
+    }
+    contact.innerHTML = '';
+    contact.innerHTML += `
+     <img src="${lastUser.imagen}" alt="User image" width="48"
+    height="48">
+    <p id="contactSection">
+        <span class="user-name">${lastUser.name}</span>
+        <span class="user-status">${connect}</span>
+    </p>
+    `;
+
+    idMy = idUserOnSesion;
+    let idMy= 0;
+    let viewedIcon = 0;
+    let classMessages = '';
     
+    messages.innerHTML = '';
+    // console.log(messages.sendBy);
+    lastUser.conversation.forEach(message => {
+        let classMessages = '';
+        if (idMy !== message.sendBy) {
+            classMessages = 'is-receiver';
+
+        } else {
+            classMessages = 'is-sender';
+            console.log(classMessages);
+
+        }
+
+        if (message.viewed) {
+            viewedIcon  = viewed;
+        }
+        else {
+            viewedIcon  = unViewed;
+        }
+
+        messages.innerHTML += `
+            <div class="message ${classMessages}">
+                <div class="message-body">
+                 <p class="message-text">${message.message}</p>
+                </div>
+                <div class="message-details">
+                 <span class="message-date">${message.hour}</span>
+                <div class="message-status is-dobleCheck">
+                    <img src="${viewedIcon}" alt="double check icon" width="16px" height="9.89"></div>
+                </div>
+            </div>
+
+        `;       
+
+    });
+   
+
+
 }
 
