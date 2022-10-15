@@ -190,6 +190,7 @@ const userChats = async () => {
 
     let idMy = 0;
     idMy = idUserOnSesion;
+    console.log(idMy)
     let viewedIcon = '';
     let classMessages = '';
 
@@ -197,10 +198,10 @@ const userChats = async () => {
     lastUser.conversation.forEach(message => {
         let classMessages = '';
         if (idMy !== message.sendBy) {
-            classMessages = 'is-receiver';
+            classMessages = 'is-sender';
 
         } else {
-            classMessages = 'is-sender';
+            classMessages = 'is-receiver';
         }
 
         if (message.viewed) {
