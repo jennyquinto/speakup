@@ -24,8 +24,6 @@ export const upData = async (endpoint, obj = {}) => {
 
     } catch (error) {
         console.log(error)
-    }
-
-    
+    }    
 }
 

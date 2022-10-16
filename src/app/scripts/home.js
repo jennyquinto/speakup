@@ -17,6 +17,8 @@ import { getData, upData } from "/src/app/scripts/process.js";
 import { getFormElements } from "/src/app/scripts/ui.js";
 
 let chatSections = new getFormElements("chatSection");
+let conversationUser = new getFormElements("conversation");
+let userCard = conversationUser.getElement;
 
 let chat = new getFormElements("userChat");
 let userChat = chat.getElement;
@@ -59,7 +61,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     event.preventDefault()
     userChats();
     userChat.firstChild.classList.add('start');
-
     let obj = {
         ...onSesion,
         connection: true,
@@ -73,7 +74,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
     localStorage.setItem("sesionUser", JSON.stringify(userUpdated));
 
-    console.log(userUpdated)
 });
 
 const userChats = async () => {
@@ -161,21 +161,21 @@ const userChats = async () => {
 
         userChat.innerHTML += `
             <section class="left__chats__conversation">
-                <div class="conversation__card">
-                    <figure class="card__user-chat">
-                        <img src="${user.imagen}" alt="User image" class="imgUser">
+                <div class="conversation__card conversation" user=${user.id}>
+                    <figure class="card__user-chat conversation" user=${user.id}>
+                        <img src="${user.imagen}" alt="User image" class="imgUser conversation" user=${user.id}>
                     </figure>
-                <div class="card__info">
-                    <div class="card__info__top">
-                    <span class="userName">${user.name}</span>
-                    <span class="date">${lastConversation.date}</span>
+                <div class="card__info conversation" user=${user.id} >
+                    <div class="card__info__top conversation" user=${user.id}>
+                    <span class="userName conversation" user=${user.id}>${user.name}</span>
+                    <span class="date conversation" user=${user.id}>${lastConversation.date}</span>
                     </div>
-                    <div class="card__info__bottom">
+                    <div class="card__info__bottom conversation" user=${user.id}>
                     <figure>
                         <img src="${checkIcon}" alt="double check icon" width="16px" height="9.89">
                     </figure>
-                    <div class="info__message">
-                        <span>${lastConversation.message}</span>
+                    <div class="info__message conversation" user=${user.id}>
+                        <span class="conversation" user=${user.id}>${lastConversation.message}</span>
                     </div>
                     </div>
                 </div>
@@ -194,8 +194,7 @@ const userChats = async () => {
     }
     contact.innerHTML = '';
     contact.innerHTML += `
-     <img src="${lastUser.imagen}" alt="User image" width="48"
-    height="48">
+     <img src="${lastUser.imagen}" alt="User image" width="48" height="48">
     <p id="contactSection">
         <span class="user-name">${lastUser.name}</span>
         <span class="user-status">${connect}</span>
@@ -204,7 +203,6 @@ const userChats = async () => {
 
     let idMy = 0;
     idMy = idUserOnSesion;
-    console.log(idMy)
     let viewedIcon = '';
     let classMessages = '';
 
@@ -239,9 +237,100 @@ const userChats = async () => {
 
         `;
 
+
     });
-
-
 
 }
 
+const getHistorial = async (id) => {
+    try {
+        let conersationURL = `messages?idUser1=${onSesion.id}&idUser2=${id}`;
+        let chat = await getData(conersationURL);
+        if (chat.length) {
+            let chatConversation = chat[0].conversation;
+            messages.innerHTML = '';
+            let viewedIcon = '';
+            
+            chatConversation.forEach(message=> {
+                let classMessages = '';
+                if (onSesion.id !== message.sendBy) {
+                    classMessages = 'is-sender';
+        
+                } else {
+                    classMessages = 'is-receiver';
+                }
+        
+                if (message.viewed) {
+                    viewedIcon = viewed;
+                }
+                else {
+                    viewedIcon = unViewed;
+                }
+        
+                messages.innerHTML += `
+                    <div class="message ${classMessages}">
+                        <div class="message-body">
+                         <p class="message-text">${message.message}</p>
+                        </div>
+                        <div class="message-details">
+                         <span class="message-date">${message.hour}</span>
+                        <div class="message-status is-dobleCheck">
+                            <img src="${viewedIcon}" alt="double check icon" width="16px" height="9.89"></div>
+                        </div>
+                    </div>
+        
+                `;
+        
+            });
+
+        } else {
+            conersationURL = `messages?idUser1=${id}&idUser2=${onSesion.id}`;
+            [chat]= await getData(conersationURL);
+            let chatConversation = chat.conversation;
+
+            messages.innerHTML = '';
+            let viewedIcon = '';
+            chatConversation.forEach(message=> {
+                let classMessages = '';
+                if (onSesion.id !== message.sendBy) {
+                    classMessages = 'is-sender';
+        
+                } else {
+                    classMessages = 'is-receiver';
+                }
+        
+                if (message.viewed) {
+                    viewedIcon = viewed;
+                }
+                else {
+                    viewedIcon = unViewed;
+                }
+        
+                messages.innerHTML += `
+                    <div class="message ${classMessages}">
+                        <div class="message-body">
+                         <p class="message-text">${message.message}</p>
+                        </div>
+                        <div class="message-details">
+                         <span class="message-date">${message.hour}</span>
+                        <div class="message-status is-dobleCheck">
+                            <img src="${viewedIcon}" alt="double check icon" width="16px" height="9.89"></div>
+                        </div>
+                    </div>
+        
+                `;
+        
+            });
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+userCard.addEventListener('click', ({ target }) => {
+    if (target.classList.contains('conversation')) {
+        let idUserChats = target.getAttribute('user');
+        getHistorial(idUserChats);
+    }
+});

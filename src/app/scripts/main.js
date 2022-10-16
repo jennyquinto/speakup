@@ -66,8 +66,9 @@ const logIn = async (e) => {
             });
             alert(` ${response[0].name}`);
             
-            // // setTimeout(() => { location.href= `${pagehome}` }, 3000);
-            
+            // // setTimeout(() => { location.href= `${pagehome}` }, 3000);           
+
+            localStorage.setItem("sesionUser", JSON.stringify(response[0]));
             location.href = `${pagehome}`;
 
 
