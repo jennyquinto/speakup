@@ -1,7 +1,14 @@
 import "../styles/style.js";
 
-import { getData } from "/src/app/scripts/process.js";
+import { getData, upData } from "/src/app/scripts/process.js";
 import { getFormElements } from "/src/app/scripts/ui.js";
+import { dateHour } from "/src/app/scripts/dateHour.js";
+
+let { date, horaMinutos, day } = dateHour();
+
+const dateConnection = `${date} ${horaMinutos}`;
+
+
 
 const pageUrl =window.origin;
 const pagehome=`${pageUrl}/home.html`
@@ -59,8 +66,8 @@ const logIn = async (e) => {
             });
             alert(` ${response[0].name}`);
             
-            setTimeout(() => { location.href= `${pagehome}` }, 3000);
-            localStorage.setItem("sesionUser", JSON.stringify(response[0]));
+            // // setTimeout(() => { location.href= `${pagehome}` }, 3000);
+            
             location.href = `${pagehome}`;
 
 
@@ -86,7 +93,7 @@ const validationSession = () => {
     }
 };
 
-// validationSession();
+validationSession();
 
 formSignIn.getElement.addEventListener("submit", (e) => {
     console.log(e);

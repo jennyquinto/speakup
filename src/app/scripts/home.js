@@ -1,7 +1,8 @@
-// import { dateHour } from "/scripts/dateHour.js";
-// let { date, horaMinutos, day } = dateHour();
+import { dateHour } from "/src/app/scripts/dateHour.js";
+let { date, horaMinutos, day } = dateHour();
 
-// console.log(day,date,horaMinutos);
+const dateConnection = `${date} ${horaMinutos}`;
+
 
 let Date = luxon.DateTime;
 
@@ -12,7 +13,7 @@ import viewed from "../../assets/doublecheckblue.svg";
 import unViewed from "../../assets/doublecheck.svg";
 
 
-import { getData } from "/src/app/scripts/process.js";
+import { getData, upData } from "/src/app/scripts/process.js";
 import { getFormElements } from "/src/app/scripts/ui.js";
 
 let chatSections = new getFormElements("chatSection");
@@ -54,12 +55,25 @@ const validationSession = () => {
 };
 validationSession();
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', async (event) => {
     event.preventDefault()
     userChats();
     userChat.firstChild.classList.add('start');
-    
-    
+
+    let obj = {
+        ...onSesion,
+        connection: true,
+        sesion: dateConnection,
+
+    };
+    const userURL = `users/${onSesion.id}`;
+    const upUser = await upData(userURL, obj);
+
+    const userUpdated = upUser.status.data;
+
+    localStorage.setItem("sesionUser", JSON.stringify(userUpdated));
+
+    console.log(userUpdated)
 });
 
 const userChats = async () => {
